@@ -2,10 +2,10 @@
 
 public class AppConfiguration
 {
-    public Playwright Playwright { get; set; }
+    public BrowserConfigs BrowserConfigs { get; set; }
 }
 
-public class Playwright
+public class BrowserConfigs
 {
     public string LocalBrowser { get; set; }
     public bool ContainerUse { get; set; }
