@@ -18,4 +18,11 @@
     <PackageReference Include="Shouldly" Version="4.3.0" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="TestResults\allure-results\" />
+    <None Update="allureConfig.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
 </Project>
