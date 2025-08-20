@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <Nullable>enable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Allure.Reqnroll" Version="2.12.1" />
+    <PackageReference Include="Bogus" Version="35.6.3" />
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="17.14.1" />
+    <PackageReference Include="Microsoft.Playwright" Version="1.55.0-beta-4" />
+    <PackageReference Include="Microsoft.Playwright.NUnit" Version="1.55.0-beta-4" />
+    <PackageReference Include="Microsoft.Playwright.TestAdapter" Version="1.55.0-beta-4" />
+    <PackageReference Include="Reqnroll.NUnit" Version="2.4.1" />
+    <PackageReference Include="nunit" Version="4.4.0" />
+    <PackageReference Include="NUnit3TestAdapter" Version="5.1.0" />
+    <PackageReference Include="Shouldly" Version="4.3.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="TestResults\allure-results\" />
+    <None Update="allureConfig.json">
+	    <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
+  </ItemGroup>
+
+</Project>
