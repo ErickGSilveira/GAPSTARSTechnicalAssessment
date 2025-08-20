@@ -1,5 +1,6 @@
 ﻿using Beequip.AcceptanceTests.Support;
 using Microsoft.Playwright;
+using System.Text;
 
 namespace Beequip.AcceptanceTests.Drivers;
 
@@ -15,16 +16,18 @@ public class Driver : IDisposable
     private IBrowserContext? _context;
     public readonly float timeOutDefault;
     public readonly float timeOutLong;
+    private string _basicAuth;
 
-    public Driver(string baseUrl, BrowserConfigs browserConfig) 
+    public Driver(BrowserConfigs browserConfig) 
     {
-        _baseUrl = baseUrl;
+                _baseUrl = browserConfig.BaseUrl;
         _localBrowser = browserConfig.LocalBrowser;
         _useContainer = browserConfig.ContainerUse;
         _wsEndpoint = browserConfig.WsEndpoint;
         _page = InitializePlaywright();
         timeOutDefault = browserConfig.TimeOut.Default;
         timeOutLong = browserConfig.TimeOut.Long;
+        _basicAuth = browserConfig.Login.Basic;
     }
     
 
@@ -76,6 +79,10 @@ public class Driver : IDisposable
         {
             BaseURL = _baseUrl,
             ViewportSize = ViewportSize.NoViewport
+        });
+        await _context.SetExtraHTTPHeadersAsync(new Dictionary<string, string>
+        {
+            { "Authorization", "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(_basicAuth)) }
         });
         _context.SetDefaultTimeout(timeOutDefault);
         return await _context.NewPageAsync();   

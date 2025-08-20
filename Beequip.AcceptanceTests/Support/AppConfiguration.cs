@@ -11,6 +11,7 @@ public class BrowserConfigs
     public bool ContainerUse { get; set; }
     public string WsEndpoint { get; set; }
     public TimeOut TimeOut { get; set; }
+    public string BaseUrl { get; set; }
     public Login Login { get; set; }
 }
 
