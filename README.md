@@ -62,3 +62,12 @@ Test that have one of tags:
 ```sh
 dotnet test --filter "Category=tag | Category=automated"
 ```
+
+## Allure Report
+
+You can find how it works here
+https://allurereport.org/docs/how-it-works/
+
+But the most important thing is:
+'Allure generate' processes the test results and saves an HTML report into the specified directory.
+To view the report, use the 'allure open' command.
