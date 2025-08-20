@@ -76,18 +76,6 @@ namespace Beequip.AcceptanceTests.StepDefinitions
             await Driver.Value.Page.WaitForLoadStateAsync();
         }
 
-        [Then("I should be redirected to details page of the equipment")]
-        public void ThenIShouldBeRedirectedToDetailsPageOfTheEquipment()
-        {
-            var expectedUrl = ScenarioContext[LeaseConstants.EquipmentUrl] as string;
-            Driver.Value.Page.Url.ShouldBe(expectedUrl);
-
-            await LeaseSendPage.inputName.FillAsync(faker.Name.FullName());
-            await LeaseSendPage.inputBalloonPhone.FillAsync(faker.Phone.PhoneNumber());
-            await LeaseSendPage.btnPrimary.ClickAsync();
-
-            await Driver.Value.Page.WaitForLoadStateAsync();
-        }
 
         [Then("I should be redirected to details page of the equipment")]
         public void ThenIShouldBeRedirectedToDetailsPageOfTheEquipment()
