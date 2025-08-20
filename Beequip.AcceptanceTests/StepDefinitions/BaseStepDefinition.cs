@@ -15,6 +15,7 @@ namespace Beequip.AcceptanceTests.StepDefinitions
         protected EquipmentDetailPage EquipmentDetail;
         protected CompanySelectionPage CompanySelection;
         protected MonthlyPaymentPage MonthlyPaymentPage;
+        protected LeaseSendPage LeaseSendPage;
 
         public BaseStepDefinition(ObjectContainer container, ScenarioContext scenarioContext)
         {
@@ -26,6 +27,7 @@ namespace Beequip.AcceptanceTests.StepDefinitions
             EquipmentDetail = new EquipmentDetailPage(Driver.Value.Page);
             CompanySelection = new CompanySelectionPage(Driver.Value.Page);
             MonthlyPaymentPage = new MonthlyPaymentPage(Driver.Value.Page);
+            LeaseSendPage = new LeaseSendPage(Driver.Value.Page);
         }
 
     }

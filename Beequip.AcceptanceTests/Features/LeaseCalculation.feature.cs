@@ -153,6 +153,9 @@ this.ScenarioInitialize(scenarioInfo);
 #line 10
  await testRunner.WhenAsync("I request the quote of lease of the equipment", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
+#line 11
+ await testRunner.ThenAsync("I should be redirected to details page of the equipment", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+#line hidden
             }
             await this.ScenarioCleanupAsync();
         }
