@@ -4,6 +4,7 @@ using Reqnroll;
 using Reqnroll.BoDi;
 using System;
 using Beequip.AcceptanceTests.Support.Constants;
+using Shouldly;
 
 namespace Beequip.AcceptanceTests.StepDefinitions
 {
@@ -23,6 +24,7 @@ namespace Beequip.AcceptanceTests.StepDefinitions
             var equipmentLeaseRequest = dataTable.CreateInstance<EquipmentLeaseRequest>();
             await MarketPlaceHome.SelectSubcategory(equipmentLeaseRequest);
             await EquipmentList.Filter();
+            ScenarioContext[LeaseConstants.EquipmentUrl] = Driver.Value.Page.Url;
         }
 
         [Given("I have {int} to use as down payment")]
@@ -41,11 +43,13 @@ namespace Beequip.AcceptanceTests.StepDefinitions
         [When("I request the quote of lease of the equipment")]
         public async Task WhenIRequestTheQuoteOfLeaseOfTheEquipment()
         {
+            var faker = new Bogus.Faker();
+
             await EquipmentDetail.btnLease.ClickAsync();
             await Driver.Value.Page.WaitForLoadStateAsync();
             await CompanySelection.inputCompany.FillAsync("63204258");
             await CompanySelection.ìtemList.ClickAsync();
-            await CompanySelection.inputEmail.FillAsync("erick@example.com");
+            await CompanySelection.inputEmail.FillAsync(faker.Internet.ExampleEmail());
             await CompanySelection.btnLease.ClickAsync();
             await Driver.Value.Page.WaitForLoadStateAsync();
 
@@ -63,6 +67,21 @@ namespace Beequip.AcceptanceTests.StepDefinitions
 
             await MonthlyPaymentPage.btnPrimary.ClickAsync();
             await Driver.Value.Page.WaitForLoadStateAsync();
+
+            await LeaseSendPage.inputName.FillAsync(faker.Name.FullName());
+            await LeaseSendPage.inputBalloonPhone.FillAsync(faker.Phone.PhoneNumber());
+            await LeaseSendPage.radioMorning.ClickAsync();
+            await LeaseSendPage.btnPrimary.ClickAsync();
+
+            await Driver.Value.Page.WaitForLoadStateAsync();
         }
+
+        [Then("I should be redirected to details page of the equipment")]
+        public void ThenIShouldBeRedirectedToDetailsPageOfTheEquipment()
+        {
+            var expectedUrl = ScenarioContext[LeaseConstants.EquipmentUrl] as string;
+            Driver.Value.Page.Url.ShouldBe(expectedUrl);
+        }
+
     }
 }

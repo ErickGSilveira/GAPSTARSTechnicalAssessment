@@ -10,5 +10,6 @@ namespace Beequip.AcceptanceTests.Support.Constants
     {
         public const string DownPayment = "DownPayment";
         public const string LeaseDuration = "LeaseDuration";
+        public const string EquipmentUrl = "EquipmentUrl";
     }
 }

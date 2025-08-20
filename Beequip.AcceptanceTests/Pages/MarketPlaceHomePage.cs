@@ -15,15 +15,10 @@ namespace Beequip.AcceptanceTests.Pages
 
         public async Task SelectSubcategory(EquipmentLeaseRequest equipmentLeaseRequest)
         {
-            //for (int i = 0; i < 5; i++)
-            // {
             await Task.Delay(100);
             await MenuAllCategory.HoverAsync();
             await Task.Delay(100);
             await MenuAllCategory.HoverAsync();
-               // if(await MenuAllCategory.GetAttributeAsync("data-state") == "open")
-                 //   break;
-           // }
             await page.Locator("//a[contains(@class,'cpRfQS')][contains(.,'Vrachtwagen')]").HoverAsync();
             await page.Locator("//a[contains(@class,'cpRfQS')][contains(.,'Schuifzeilen')]").ClickAsync();
             await page.WaitForLoadStateAsync();

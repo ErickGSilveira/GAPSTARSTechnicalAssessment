@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 namespace Beequip.AcceptanceTests.Pages
 {
     public class MonthlyPaymentPage(IPage page)
-    {
+    {   
         public ILocator inputdownPayment => page.Locator("//input[contains(@name, 'downPayment')]");
         public ILocator inputBalloonPayment => page.Locator("//input[contains(@name, 'balloonPayment')]");
         public ILocator inputDuration => page.Locator("//input[contains(@name, 'tenor')]");

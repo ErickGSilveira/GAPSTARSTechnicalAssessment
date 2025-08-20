@@ -8,6 +8,7 @@ Scenario Outline: Quote a lease of a equipment
 	And I have <donwPayment> to use as down payment
 	And I want a lease duration to be <duration> months
 	When I request the quote of lease of the equipment
+	Then I should be redirected to details page of the equipment
 Examples: 
 	| donwPayment | duration |
 	| 55290       | 96       |
