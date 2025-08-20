@@ -73,13 +73,15 @@ namespace Beequip.AcceptanceTests.StepDefinitions
             await LeaseSendPage.radioMorning.ClickAsync();
             await LeaseSendPage.btnPrimary.ClickAsync();
             await Driver.Value.Page.WaitForLoadStateAsync();
-            await Task.Delay(20000);
+            await Task.Delay(10000);
+            await Driver.Value.Page.WaitForLoadStateAsync();
         }
 
 
         [Then("I should be redirected to details page of the equipment")]
-        public void ThenIShouldBeRedirectedToDetailsPageOfTheEquipment()
+        public async Task ThenIShouldBeRedirectedToDetailsPageOfTheEquipment()
         {
+            await Task.Delay(10000);
             var expectedUrl = ScenarioContext[LeaseConstants.EquipmentUrl] as string;
             Driver.Value.Page.Url.ShouldBe(expectedUrl);
         }
