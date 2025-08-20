@@ -69,11 +69,11 @@ namespace Beequip.AcceptanceTests.StepDefinitions
             await Driver.Value.Page.WaitForLoadStateAsync();
 
             await LeaseSendPage.inputName.FillAsync(faker.Name.FullName());
-            await LeaseSendPage.inputBalloonPhone.FillAsync(faker.Phone.PhoneNumber());
+            await LeaseSendPage.inputBalloonPhone.FillAsync(faker.Phone.PhoneNumber("+## ### #######"));
             await LeaseSendPage.radioMorning.ClickAsync();
             await LeaseSendPage.btnPrimary.ClickAsync();
-
             await Driver.Value.Page.WaitForLoadStateAsync();
+            await Task.Delay(20000);
         }
 
 

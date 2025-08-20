@@ -11,7 +11,7 @@ namespace Beequip.AcceptanceTests.Pages
     {
         public ILocator inputName => page.Locator("//input[contains(@name, 'name')]");
         public ILocator inputBalloonPhone => page.Locator("//input[contains(@name, 'phone')]");
-        public ILocator radioMorning => page.Locator("//input[contains(@id, 'Ochtend')]");
+        public ILocator radioMorning => page.GetByText("Ochtend");
         public ILocator btnPrimary => page.Locator("//button[contains(@kind, 'primary')]");
     }
 }
