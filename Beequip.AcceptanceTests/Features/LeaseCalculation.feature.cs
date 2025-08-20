@@ -18,18 +18,18 @@ namespace Beequip.AcceptanceTests.Features
     [global::System.CodeDom.Compiler.GeneratedCodeAttribute("Reqnroll", "2.0.0.0")]
     [global::System.Runtime.CompilerServices.CompilerGeneratedAttribute()]
     [NUnit.Framework.TestFixtureAttribute()]
-    [NUnit.Framework.DescriptionAttribute("Calculator")]
+    [NUnit.Framework.DescriptionAttribute("LeaseCalculation")]
     [NUnit.Framework.FixtureLifeCycleAttribute(NUnit.Framework.LifeCycle.InstancePerTestCase)]
-    public partial class CalculatorFeature
+    public partial class LeaseCalculationFeature
     {
         
         private global::Reqnroll.ITestRunner testRunner;
         
         private static string[] featureTags = ((string[])(null));
         
-        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "Calculator", "Simple calculator for adding two numbers", global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
+        private static global::Reqnroll.FeatureInfo featureInfo = new global::Reqnroll.FeatureInfo(new global::System.Globalization.CultureInfo("en-US"), "Features", "LeaseCalculation", null, global::Reqnroll.ProgrammingLanguage.CSharp, featureTags);
         
-#line 1 "Calculator.feature"
+#line 1 "LeaseCalculation.feature"
 #line hidden
         
         [NUnit.Framework.OneTimeSetUpAttribute()]
@@ -103,15 +103,18 @@ namespace Beequip.AcceptanceTests.Features
         }
         
         [NUnit.Framework.TestAttribute()]
-        [NUnit.Framework.DescriptionAttribute("Add two numbers")]
-        [NUnit.Framework.CategoryAttribute("mytag")]
-        public async global::System.Threading.Tasks.Task AddTwoNumbers()
+        [NUnit.Framework.DescriptionAttribute("Quote a lease of a equipment")]
+        [NUnit.Framework.TestCaseAttribute("55290", "96", null)]
+        [NUnit.Framework.TestCaseAttribute("15000", "96", null)]
+        [NUnit.Framework.TestCaseAttribute("55290", "20", null)]
+        public async global::System.Threading.Tasks.Task QuoteALeaseOfAEquipment(string donwPayment, string duration, string[] exampleTags)
         {
-            string[] tagsOfScenario = new string[] {
-                    "mytag"};
+            string[] tagsOfScenario = exampleTags;
             global::System.Collections.Specialized.OrderedDictionary argumentsOfScenario = new global::System.Collections.Specialized.OrderedDictionary();
-            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Add two numbers", null, tagsOfScenario, argumentsOfScenario, featureTags);
-#line 6
+            argumentsOfScenario.Add("donwPayment", donwPayment);
+            argumentsOfScenario.Add("duration", duration);
+            global::Reqnroll.ScenarioInfo scenarioInfo = new global::Reqnroll.ScenarioInfo("Quote a lease of a equipment", null, tagsOfScenario, argumentsOfScenario, featureTags);
+#line 3
 this.ScenarioInitialize(scenarioInfo);
 #line hidden
             if ((global::Reqnroll.TagHelper.ContainsIgnoreTag(scenarioInfo.CombinedTags) || global::Reqnroll.TagHelper.ContainsIgnoreTag(featureTags)))
@@ -121,17 +124,34 @@ this.ScenarioInitialize(scenarioInfo);
             else
             {
                 await this.ScenarioStartAsync();
-#line 7
- await testRunner.GivenAsync("the first number is 50", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line 4
+ await testRunner.GivenAsync("Im in the marketplace", ((string)(null)), ((global::Reqnroll.Table)(null)), "Given ");
+#line hidden
+                global::Reqnroll.Table table1 = new global::Reqnroll.Table(new string[] {
+                            "Type",
+                            "SubType",
+                            "YearStart",
+                            "YearEnd",
+                            "MaxKm",
+                            "Cylinders"});
+                table1.AddRow(new string[] {
+                            "Vrachtwagen",
+                            "Schuifzeilen",
+                            "2018",
+                            "2023",
+                            "300000",
+                            "6"});
+#line 5
+ await testRunner.AndAsync("I have choose a equipment with the requirements", ((string)(null)), table1, "And ");
 #line hidden
 #line 8
- await testRunner.AndAsync("the second number is 70", ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
+ await testRunner.AndAsync(string.Format("I have {0} to use as down payment", donwPayment), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 9
- await testRunner.WhenAsync("the two numbers are added", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
+ await testRunner.AndAsync(string.Format("I want a lease duration to be {0} months", duration), ((string)(null)), ((global::Reqnroll.Table)(null)), "And ");
 #line hidden
 #line 10
- await testRunner.ThenAsync("the result should be 120", ((string)(null)), ((global::Reqnroll.Table)(null)), "Then ");
+ await testRunner.WhenAsync("I request the quote of lease of the equipment", ((string)(null)), ((global::Reqnroll.Table)(null)), "When ");
 #line hidden
             }
             await this.ScenarioCleanupAsync();

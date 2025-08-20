@@ -14,8 +14,8 @@ public class Driver : IDisposable
     private readonly bool _useContainer;
     public IPage Page => _page.Result;
     private IBrowserContext? _context;
-    public readonly float timeOutDefault;
-    public readonly float timeOutLong;
+    public readonly float TimeOutDefault;
+    public readonly float TimeOutLong;
     private string _basicAuth;
 
     public Driver(BrowserConfigs browserConfig) 
@@ -25,8 +25,8 @@ public class Driver : IDisposable
         _useContainer = browserConfig.ContainerUse;
         _wsEndpoint = browserConfig.WsEndpoint;
         _page = InitializePlaywright();
-        timeOutDefault = browserConfig.TimeOut.Default;
-        timeOutLong = browserConfig.TimeOut.Long;
+        TimeOutDefault = browserConfig.TimeOut.Default;
+        TimeOutLong = browserConfig.TimeOut.Long;
         _basicAuth = browserConfig.Login.Basic;
     }
     
@@ -60,7 +60,7 @@ public class Driver : IDisposable
             switch (_localBrowser.ToLower())
             {
                 case "chromium":
-                    _browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false , Args = new List<string>{ "--start-maximized" }});
+                    _browser = await playwright.Chromium.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false, SlowMo = 100 , Args = new List<string>{ "--start-maximized" }});
                     break;
                 case "webkit":
                     _browser = await playwright.Webkit.LaunchAsync(new BrowserTypeLaunchOptions { Headless = false });
@@ -82,9 +82,10 @@ public class Driver : IDisposable
         });
         await _context.SetExtraHTTPHeadersAsync(new Dictionary<string, string>
         {
-            { "Authorization", "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(_basicAuth)) }
+            { "Authorization", "Basic " + Convert.ToBase64String(Encoding.UTF8.GetBytes(_basicAuth)) },
+            { "x-vercel-protection-bypass", " VreVj3DC9fVuVRcQzUoz3rtAgitcbX6M" }
         });
-        _context.SetDefaultTimeout(timeOutDefault);
+        _context.SetDefaultTimeout(TimeOutDefault);
         return await _context.NewPageAsync();   
     }
 
